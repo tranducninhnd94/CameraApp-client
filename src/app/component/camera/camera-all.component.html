@@ -1,0 +1,7 @@
+<div>
+    <select (change)="onChange($event.target.value)">
+        <option>Camera</option>
+        <option *ngFor="let i of arrCamera">{{i}}</option>
+    </select>
+</div>
+<canvas #divCanvas width='800' height='800'></canvas>
