@@ -1,7 +1,82 @@
-<div>
-    <select (change)="onChange($event.target.value)">
-        <option>Camera</option>
-        <option *ngFor="let i of arrCamera">{{i}}</option>
-    </select>
+<div class="container">
+    <div *ngIf="arrCamera" class="row">
+        <p>Danh sách camera trong hệ thống</p>
+        <div *ngFor="let camera of arrCamera" class="col-sm-2">
+            <img src="../../../assets/video-camera.png" />
+            <p> {{camera.name}}</p>
+        </div>
+    </div>
+    <div class="row camera-schedule">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12 screen-show">
+                    <p>Show video & Schedule</p>
+                    <canvas #divCanvas width='640' height='480'></canvas>
+                </div>
+                <div class="col-md-12 adjustment-bar">
+                    <p>Thanh xam lại video</p>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Camera</th>
+                                    <th>Ngày xem</th>
+                                    <th>Giờ xem</th>
+                                    <th>Phút xem</th>
+                                    <th>Xem trong bao lâu</th>
+                                    <th>Xem</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <select>
+                                            <option>Camera</option>
+                                            <option *ngFor="let camera of arrCamera;let i = index">Camera {{i}}</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="text" placeholder="Ngày xem" class="dateView" bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="hourView" [(ngModel)]="hourView">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="minuteView" [(ngModel)]="minuteView">
+                                    </td>
+                                    <td>
+                                        <input type="number" class="totalMinuteView" [(ngModel)]="totalMinuteView">
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-success">Xem</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 schedule-product">
+            list task
+        </div>
+    </div>
+
+    <div>
+        <select (change)="onChange($event.target.value)">
+            <option>Camera</option>
+            <option *ngFor="let camera of arrCamera;let i = index">{{i}}</option>
+        </select>
+    </div>
+
+    <div class="row list_video">
+        <div class="col-md-2 video"> Video 1 </div>
+        <div class="col-md-2 video"> Video 2 </div>
+        <div class="col-md-2 video"> Video 3 </div>
+        <div class="col-md-2 video"> Video 4 </div>
+        <div class="col-md-2 video"> Video 5 </div>
+        <div class="col-md-2 video"> Video 6 </div>
+        <div class="col-md-2 video"> Video 8 </div>
+        <div class="col-md-2 video"> Video 9 </div>
+    </div>
 </div>
-<canvas #divCanvas width='800' height='800'></canvas>
