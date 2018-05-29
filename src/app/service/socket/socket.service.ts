@@ -7,7 +7,6 @@ import { Subject } from "rxjs/Subject";
 @Injectable()
 export class SocketService {
     private socket = io("http://localhost:8080");
-    private nsSocket = io("http://localhost:8080/cam0");
     private Observer: Observable<any>;
 
     constructor() { }
@@ -24,11 +23,15 @@ export class SocketService {
     getData(namesapce): Observable<any> {
         let ns = "http://localhost:8080" + namesapce;
         console.log("service namespace : ", ns);
-        this.nsSocket = io(ns);
+        let nsSocket = io(ns);
         let observable = new Observable<any>(observer => {
-            this.nsSocket.on("data", data => {
+            nsSocket.on("data", data => {
                 observer.next(data);
             });
+
+            return ()=>{
+                nsSocket.disconnect();
+            } 
         });
         return observable;
     }

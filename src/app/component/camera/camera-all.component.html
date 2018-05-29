@@ -1,8 +1,8 @@
 <div class="container">
-    <div *ngIf="arrCamera" class="row">
+    <div *ngIf="arrCamera" class="row list-camera">
         <p>Danh sách camera trong hệ thống</p>
-        <div *ngFor="let camera of arrCamera" class="col-sm-2">
-            <img src="../../../assets/video-camera.png" />
+        <div *ngFor="let camera of arrCamera; let i = index" class="col-sm-2">
+            <img src="../../../assets/video-camera.png"  (click)="realTimeCamera(i)"/>
             <p> {{camera.name}}</p>
         </div>
     </div>
@@ -62,14 +62,14 @@
         </div>
     </div>
 
-    <div>
+    <!-- <div>
         <select (change)="onChange($event.target.value)">
             <option>Camera</option>
             <option *ngFor="let camera of arrCamera;let i = index">{{i}}</option>
         </select>
-    </div>
+    </div> -->
 
-    <div class="row list_video">
+    <div class="row list-video">
         <div class="col-md-2 video"> Video 1 </div>
         <div class="col-md-2 video"> Video 2 </div>
         <div class="col-md-2 video"> Video 3 </div>
